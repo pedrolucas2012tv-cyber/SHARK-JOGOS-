@@ -1,8 +1,13 @@
 @import "@fontsource-variable/manrope/wght.css";
-@import "@fontsource-variable/space-grotesk/wght.css";
+@import "@fontsource-variable/cinzel/wght.css";
 @import "@fontsource-variable/jetbrains-mono/wght.css";
 @import "./tokens/tokens.css";
+@import "./tokens/themes.css";
 @import "./base/base.css";
+@import "./components/ambient.css";
 @import "./components/profile-links.css";
 @import "./components/effects.css";
+@import "./components/save.css";
+@import "./components/panel.css";
+@import "./components/cinema.css";
 @import "./components/motion.css";

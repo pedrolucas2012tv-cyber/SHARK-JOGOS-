@@ -4,6 +4,7 @@
     { "id": "photo-clicks", "type": "click-count", "target": "profile-photo", "threshold": 7, "resetAfterMs": 4000, "effect": "photo-reaction" },
     { "id": "main-link-hold", "type": "long-press", "target": "link-main", "thresholdMs": 2000, "effect": "main-link-secret-reveal" },
     { "id": "console-message", "type": "on-load", "effect": "console-log-message" },
-    { "id": "hidden-pixel", "type": "click-target", "target": "background-hidden-node", "effect": "hidden-note-reveal" }
+    { "id": "hidden-pixel", "type": "click-target", "target": "background-hidden-node", "effect": "hidden-note-reveal" },
+    { "id": "cars", "type": "typed-word", "trigger": "cars", "effect": "unlock-room-estrada" }
   ]
 }

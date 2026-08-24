@@ -1,22 +1,37 @@
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
 
-export function initMotion() {
+const NO_SFX = { move() {}, select() {} };
+
+let rearm = () => {};
+export const resetMotion = () => rearm();
+
+export function initMotion({ sfx = NO_SFX } = {}) {
   const root = document.documentElement;
   const revealItems = [...document.querySelectorAll('.reveal')];
   root.classList.add('motion-ready');
 
-  revealItems.forEach((item) => {
+  const armed = new WeakMap();
+  const arm = (item) => {
     if (reduceMotion.matches) {
       item.classList.add('is-motion-settled');
       return;
     }
+    const previous = armed.get(item);
+    if (previous) item.removeEventListener('transitionend', previous);
     const settle = (event) => {
       if (event.target !== item || event.propertyName !== 'transform') return;
       item.classList.add('is-motion-settled');
       item.removeEventListener('transitionend', settle);
+      armed.delete(item);
     };
+    armed.set(item, settle);
     item.addEventListener('transitionend', settle);
+  };
+  revealItems.forEach(arm);
+  rearm = () => revealItems.forEach((item) => {
+    item.classList.remove('is-motion-settled');
+    arm(item);
   });
 
   const prepareWords = () => {
@@ -135,4 +150,36 @@ export function initMotion() {
       ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
     });
   }
+
+  const MENU = '.social-card, .project-card, .site-signature, .btn, .sound-toggle, .language-switch button, .footer-source';
+  let lastMoved = null;
+  const arrived = () => document.body.classList.contains('is-loaded');
+
+  const onMove = (event) => {
+    const target = event.target instanceof Element ? event.target.closest(MENU) : null;
+    if (target === lastMoved) return;
+    lastMoved = target;
+    if (target && arrived()) sfx.move();
+  };
+  document.addEventListener('pointerover', onMove);
+  document.addEventListener('focusin', (event) => {
+    const target = event.target instanceof Element ? event.target.closest(MENU) : null;
+    if (!target || target === lastMoved) return;
+    lastMoved = target;
+    if (arrived()) sfx.move();
+  });
+  document.addEventListener('pointerleave', () => { lastMoved = null; });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target.closest(MENU) : null;
+
+    if (!target || target.closest('.sound-toggle') || !arrived()) return;
+    sfx.select();
+
+    const row = target.closest('.social-card');
+    if (!row || reduceMotion.matches) return;
+    row.classList.remove('is-selected');
+    requestAnimationFrame(() => row.classList.add('is-selected'));
+    row.addEventListener('animationend', () => row.classList.remove('is-selected'), { once: true });
+  });
 }

@@ -1,0 +1,63 @@
+[data-room="cidade"] {
+  --accent-fg: #05080f;
+  --surface: #0e1420;
+  --surface-2: #131b2a;
+  --surface-3: #182031;
+  --surface-4: #212b3f;
+  --bg: #05080f;
+  --bg-sunken: #04060b;
+  --deep-rgb: 74 122 196;
+  --accent-rgb: 92 148 255;
+  --ember-rgb: 168 206 255;
+}
+[data-room="jardins"] {
+  --accent-fg: #060b08;
+  --surface: #0f1512;
+  --surface-2: #141b17;
+  --surface-3: #19211c;
+  --surface-4: #212b25;
+  --bg: #060b08;
+  --bg-sunken: #040705;
+  --deep-rgb: 92 152 108;
+  --accent-rgb: 226 118 152;
+  --ember-rgb: 236 176 152;
+}
+[data-room="cristal"] {
+  --accent-fg: #09070f;
+  --surface: #12101b;
+  --surface-2: #171525;
+  --surface-3: #1c1a2c;
+  --surface-4: #262239;
+  --bg: #09070f;
+  --bg-sunken: #06040a;
+  --deep-rgb: 138 104 196;
+  --accent-rgb: 236 92 196;
+  --ember-rgb: 246 168 230;
+}
+[data-room="seda"] {
+  --accent-fg: #0b0904;
+  --surface: #15120c;
+  --surface-2: #1b1710;
+  --surface-3: #211c14;
+  --surface-4: #2c261b;
+  --bg: #0b0904;
+  --bg-sunken: #070603;
+  --deep-rgb: 176 140 84;
+  --accent-rgb: 236 168 62;
+  --ember-rgb: 255 208 150;
+}
+
+[data-room="estrada"] {
+  --accent-fg: #fff;
+  --surface: #17110e;
+  --surface-2: #1e1712;
+  --surface-3: #241c16;
+  --surface-4: #30251d;
+  --bg: #0b0806;
+  --bg-sunken: #070504;
+  --deep-rgb: 96 168 186;
+  --accent-rgb: 214 44 40;
+  --ember-rgb: 255 150 96;
+}
+
+body { transition: background-color 720ms var(--ease-glide); }

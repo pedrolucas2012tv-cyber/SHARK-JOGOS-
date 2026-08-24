@@ -1,29 +1,68 @@
-body.has-entry-gate { overflow: hidden; }
-.entry-gate { position: fixed; inset: 0; z-index: var(--z-modal); display: grid; place-items: center; padding: var(--space-4); background: rgb(0 0 0 / 72%); opacity: 1; overscroll-behavior: contain; transition: opacity var(--duration-base) var(--ease); }
-.entry-gate__dialog { width: min(100%, 480px); overflow: hidden; border: 1px solid var(--border-strong); border-radius: var(--radius-xl); background: var(--surface); box-shadow: var(--shadow-lg); cursor: default; }
-.entry-gate__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5); border-bottom: 1px solid var(--border); }
-.entry-gate__head h2 { font-size: var(--text-lg); }
-.entry-gate__mark { width: 34px; height: 34px; border-radius: var(--radius-md); object-fit: cover; }
-.entry-gate__body { display: grid; gap: var(--space-4); padding: var(--space-5); }
-.entry-gate__body p { color: var(--text-2); }
-.entry-gate__status { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface-2); }
-.entry-gate__status > i { width: 8px; height: 8px; flex: none; border-radius: 50%; background: var(--success); }
-.entry-gate__status span { display: grid; }
-.entry-gate__status strong { font-size: var(--text-base); font-weight: var(--weight-medium); }
-.entry-gate__status small { color: var(--text-3); font-size: var(--text-sm); }
-.entry-gate__footer { display: flex; justify-content: flex-end; padding: var(--space-4) var(--space-5); border-top: 1px solid var(--border); background: var(--bg-sunken); }
-.entry-gate.is-exiting { opacity: 0; pointer-events: none; }
-.music { position: relative; display: flex; align-items: center; }
-.music__panel { position: absolute; top: calc(100% + var(--space-2)); right: 0; z-index: var(--z-popover); display: none; width: 230px; gap: var(--space-1); padding: var(--space-3); border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--surface-2); box-shadow: var(--shadow-md); }
-.music.is-open .music__panel { display: grid; }
-.music__panel strong { font-size: var(--text-sm); font-weight: var(--weight-medium); }
-.music__panel small { color: var(--text-3); font-size: var(--text-xs); }
-.music__glyph { display: grid; width: 15px; place-items: center; }
-.music__glyph svg { width: 15px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-width: 1.7; }
+body.has-entry-gate { touch-action: none; }
+body.has-entry-gate .bio-page { pointer-events: none; }
+
+body.has-entry-gate .skip-link { display: none; }
+
+.sound-toggle { position: relative; }
+.sound-toggle__glyph { display: flex; align-items: center; justify-content: center; gap: 2px; width: 15px; height: 15px; }
+.sound-toggle__glyph i {
+  display: block;
+  width: 2px;
+  height: 4px;
+  border-radius: 1px;
+  background: currentcolor;
+  transition: height 320ms var(--ease-out), background-color var(--duration-base) var(--ease);
+}
+.sound-toggle.is-on { color: var(--text); }
+.sound-toggle.is-on .sound-toggle__glyph i {
+  animation: sound-bars 1.15s var(--ease-in-out) infinite alternate;
+  animation-delay: calc(var(--i) * 130ms);
+}
+@keyframes sound-bars {
+  from { height: 4px; }
+  to   { height: calc(9px + var(--i) * 2px); }
+}
+
 .toast { position: fixed; left: 50%; bottom: var(--space-8); z-index: var(--z-toast); max-width: calc(100vw - var(--space-8)); padding: var(--space-3) var(--space-4); border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--surface-3); box-shadow: var(--shadow-md); color: var(--text); font-size: var(--text-sm); opacity: 0; pointer-events: none; transform: translate(-50%, var(--space-2)); transition: opacity var(--duration-base), transform var(--duration-base); }
 .toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 .profile-card.is-egg { animation: profile-confirm var(--duration-slow) var(--ease-out); }
 @keyframes profile-confirm { 50% { border-color: var(--border-loud); background: var(--surface-2); } }
-.secret-mode::before { position: fixed; inset: 0 0 auto; z-index: var(--z-popover); display: grid; place-items: center; min-height: 40px; border-bottom: 1px solid var(--border-strong); background: var(--surface-2); color: var(--text); content: "ACHIEVEMENT / CURIOUS ENOUGH"; font: 600 var(--text-xs) var(--font-mono); letter-spacing: var(--tracking-wide); animation: achievement 5s var(--ease) both; }
-@keyframes achievement { 0%, 100% { opacity: 0; } 8%, 92% { opacity: 1; } }
+
+.secret-mode::before {
+  position: fixed;
+  top: var(--space-6);
+  left: 50%;
+  z-index: var(--z-popover);
+  display: grid;
+  place-items: center;
+  max-width: calc(100vw - var(--space-8));
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid rgb(var(--ember-rgb) / 34%);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgb(24 28 38 / 94%), rgb(14 17 24 / 96%));
+  box-shadow: 0 18px 46px rgb(0 0 0 / 55%), 0 0 60px rgb(var(--ember-rgb) / 12%);
+  color: var(--text);
+  content: "CONQUISTA / CURIOSO O BASTANTE";
+  font: var(--weight-semibold) var(--text-xs)/1.4 var(--font-mono);
+  letter-spacing: .2em;
+  text-indent: .2em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: achievement 5s var(--ease-out) both;
+}
+html[lang="en"] .secret-mode::before { content: "ACHIEVEMENT / CURIOUS ENOUGH"; }
+@keyframes achievement {
+  0% { opacity: 0; transform: translate(-50%, -20px) scale(.96); }
+  9%, 88% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -12px) scale(.99); }
+}
+@media (max-width: 480px) {
+  .secret-mode::before { padding: var(--space-2-5) var(--space-4); font-size: .625rem; letter-spacing: .12em; text-indent: .12em; }
+}
 @media (max-width: 780px) { .toast { bottom: calc(58px + var(--space-5) + env(safe-area-inset-bottom, 0px)); } }
+
+@media (prefers-reduced-motion: reduce) {
+
+  .secret-mode::before { opacity: 1; transform: translate(-50%, 0); animation: none; }
+}

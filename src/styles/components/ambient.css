@@ -1,0 +1,122 @@
+.ambient-atmosphere,
+.ambient-canvas,
+.ambient-vignette,
+.ambient-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  contain: strict;
+}
+
+.ambient-atmosphere {
+  z-index: 0;
+  background:
+    radial-gradient(58vmax 44vmax at 68% -8%, rgb(var(--deep-rgb) / 15%), transparent 62%),
+    radial-gradient(50vmax 40vmax at 12% 22%, rgb(58 84 130 / 11%), transparent 64%),
+    radial-gradient(70vmax 40vmax at 50% 112%, rgb(var(--accent-rgb) / 8%), transparent 58%),
+    linear-gradient(180deg, rgb(10 14 24 / 55%) 0%, transparent 34%, transparent 62%, rgb(6 7 12 / 70%) 100%);
+  filter: blur(10px) saturate(1.08);
+  transition: filter 300ms var(--ease);
+  opacity: 0;
+  transform: scale(1.16);
+  animation: atmosphere-fade 1400ms var(--ease) 80ms forwards, atmosphere-drift 58s var(--ease-in-out) infinite;
+  will-change: transform, opacity;
+}
+@keyframes atmosphere-fade { to { opacity: 1; } }
+
+.is-room-shifting .ambient-atmosphere { filter: blur(14px) saturate(1.08) brightness(.3); }
+@keyframes atmosphere-drift {
+  0%   { transform: scale(1.16) translate3d(0, 0, 0) rotate(0deg); }
+  27%  { transform: scale(1.23) translate3d(-2.4%, 1.4%, 0) rotate(1.2deg); }
+  58%  { transform: scale(1.19) translate3d(1.6%, -1.8%, 0) rotate(-.9deg); }
+  81%  { transform: scale(1.21) translate3d(.8%, 1.1%, 0) rotate(.5deg); }
+  100% { transform: scale(1.16) translate3d(0, 0, 0) rotate(0deg); }
+}
+
+[data-room="cidade"] .ambient-atmosphere {
+  background:
+    radial-gradient(58vmax 46vmax at 50% -14%, rgb(var(--ember-rgb) / 15%), transparent 62%),
+    linear-gradient(178deg, rgb(var(--deep-rgb) / 17%) 0%, transparent 48%),
+    radial-gradient(92vmax 30vmax at 50% 108%, rgb(var(--accent-rgb) / 11%), transparent 60%),
+    linear-gradient(180deg, rgb(8 14 26 / 62%) 0%, transparent 38%, transparent 60%, rgb(4 6 12 / 80%) 100%);
+}
+[data-room="jardins"] .ambient-atmosphere {
+  background:
+    radial-gradient(52vmax 40vmax at 20% -8%, rgb(var(--deep-rgb) / 22%), transparent 64%),
+    radial-gradient(44vmax 34vmax at 86% 12%, rgb(var(--accent-rgb) / 11%), transparent 66%),
+    radial-gradient(74vmax 34vmax at 50% 106%, rgb(var(--deep-rgb) / 13%), transparent 60%),
+    linear-gradient(180deg, rgb(8 16 10 / 52%), transparent 36%, transparent 62%, rgb(4 9 6 / 74%));
+}
+[data-room="cristal"] .ambient-atmosphere {
+  background:
+    linear-gradient(104deg, transparent 30%, rgb(var(--ember-rgb) / 10%) 44%, transparent 58%),
+    linear-gradient(256deg, transparent 32%, rgb(var(--accent-rgb) / 9%) 46%, transparent 60%),
+    radial-gradient(48vmax 40vmax at 50% 6%, rgb(var(--deep-rgb) / 20%), transparent 62%),
+    linear-gradient(180deg, rgb(12 8 20 / 58%), transparent 40%, transparent 64%, rgb(6 4 12 / 78%));
+}
+[data-room="seda"] .ambient-atmosphere {
+  background:
+    radial-gradient(64vmax 42vmax at 50% -12%, rgb(var(--accent-rgb) / 15%), transparent 60%),
+    radial-gradient(84vmax 30vmax at 50% 104%, rgb(var(--ember-rgb) / 13%), transparent 62%),
+    radial-gradient(36vmax 36vmax at 14% 34%, rgb(var(--deep-rgb) / 12%), transparent 64%),
+    linear-gradient(180deg, rgb(20 14 6 / 52%), transparent 38%, transparent 62%, rgb(10 7 3 / 76%));
+}
+[data-room="estrada"] .ambient-atmosphere {
+  background:
+    linear-gradient(180deg, rgb(5 9 14 / 90%) 0%, rgb(10 8 6 / 34%) 50%, transparent 58%),
+    radial-gradient(46vmax 24vmax at 50% 58%, rgb(var(--ember-rgb) / 17%), transparent 66%),
+    radial-gradient(38vmax 30vmax at 10% 24%, rgb(var(--deep-rgb) / 15%), transparent 64%),
+    linear-gradient(0deg, rgb(14 8 4 / 72%) 0%, transparent 36%);
+}
+[data-room="estrada"] .ambient-vignette {
+  background: radial-gradient(136% 116% at 50% 54%, transparent 40%, rgb(3 3 5 / 42%) 78%, rgb(2 2 4 / 84%) 100%);
+}
+[data-room="cidade"] .ambient-vignette {
+  background: radial-gradient(118% 104% at 50% 38%, transparent 28%, rgb(3 5 9 / 52%) 72%, rgb(2 3 6 / 88%) 100%);
+}
+
+.ambient-canvas {
+  z-index: 1;
+  opacity: 0;
+  animation: canvas-fade 1100ms var(--ease) 60ms forwards;
+}
+@keyframes canvas-fade { to { opacity: 1; } }
+
+.ambient-vignette {
+  z-index: 3;
+  background: radial-gradient(126% 108% at 50% 42%, transparent 34%, rgb(3 4 7 / 46%) 74%, rgb(2 3 5 / 82%) 100%);
+  animation: vignette-breathe 19s var(--ease-in-out) infinite;
+}
+@keyframes vignette-breathe {
+  0%, 100% { opacity: .88; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.035); }
+}
+
+.ambient-grain {
+  z-index: 4;
+  opacity: .045;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 5.4s steps(7) infinite;
+}
+@keyframes grain-shift {
+  0%   { background-position: 0 0; }
+  17%  { background-position: -32px 18px; }
+  34%  { background-position: 22px -20px; }
+  51%  { background-position: -16px -28px; }
+  68%  { background-position: 30px 24px; }
+  85%  { background-position: -24px 8px; }
+  100% { background-position: 0 0; }
+}
+
+.bio-page { position: relative; z-index: 5; }
+.skip-link { z-index: var(--z-toast); }
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ambient-atmosphere { animation: none; transform: scale(1.16); opacity: 1; }
+  .is-room-shifting .ambient-atmosphere { filter: blur(10px) saturate(1.08); }
+  .ambient-canvas { animation: none; opacity: 1; }
+  .ambient-vignette { animation: none; opacity: .92; }
+  .ambient-grain { animation: none; opacity: .03; }
+}

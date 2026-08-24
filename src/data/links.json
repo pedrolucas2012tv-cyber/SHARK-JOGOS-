@@ -1,0 +1,45 @@
+{
+  "main": {
+    "id": "tavvkkj-xyz",
+    "label": "tavvkkj.xyz",
+    "description": "Jogos, mapas e versões para navegador.",
+    "url": "https://tavvkkj.xyz",
+    "badge": "PROJETO PRINCIPAL",
+    "icon": "gamepad",
+    "featured": true
+  },
+  "secondary": [
+    {
+      "id": "github",
+      "label": "GitHub",
+      "description": "Projetos e código-fonte.",
+      "url": "https://github.com/tavvkkj",
+      "icon": "github",
+      "featured": false
+    },
+    {
+      "id": "youtube",
+      "label": "YouTube",
+      "description": "Vídeos e projetos.",
+      "url": "https://www.youtube.com/@tavvkkj",
+      "icon": "youtube",
+      "featured": false
+    },
+    {
+      "id": "tiktok",
+      "label": "TikTok",
+      "description": "Vídeos curtos.",
+      "url": "https://tiktok.com/@tavvkkj",
+      "icon": "tiktok",
+      "featured": false
+    },
+    {
+      "id": "spotify",
+      "label": "Spotify",
+      "description": "Minha playlist.",
+      "url": "https://open.spotify.com/playlist/0QzmtFEyFAP17LHZ3FVknu",
+      "icon": "spotify",
+      "featured": false
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+body.has-entry-gate { overflow: hidden; }
+.entry-gate { position: fixed; inset: 0; z-index: var(--z-modal); display: grid; place-items: center; padding: var(--space-4); background: rgb(0 0 0 / 72%); opacity: 1; overscroll-behavior: contain; transition: opacity var(--duration-base) var(--ease); }
+.entry-gate__dialog { width: min(100%, 480px); overflow: hidden; border: 1px solid var(--border-strong); border-radius: var(--radius-xl); background: var(--surface); box-shadow: var(--shadow-lg); cursor: default; }
+.entry-gate__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5); border-bottom: 1px solid var(--border); }
+.entry-gate__head h2 { font-size: var(--text-lg); }
+.entry-gate__mark { width: 34px; height: 34px; border-radius: var(--radius-md); object-fit: cover; }
+.entry-gate__body { display: grid; gap: var(--space-4); padding: var(--space-5); }
+.entry-gate__body p { color: var(--text-2); }
+.entry-gate__status { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface-2); }
+.entry-gate__status > i { width: 8px; height: 8px; flex: none; border-radius: 50%; background: var(--success); }
+.entry-gate__status span { display: grid; }
+.entry-gate__status strong { font-size: var(--text-base); font-weight: var(--weight-medium); }
+.entry-gate__status small { color: var(--text-3); font-size: var(--text-sm); }
+.entry-gate__footer { display: flex; justify-content: flex-end; padding: var(--space-4) var(--space-5); border-top: 1px solid var(--border); background: var(--bg-sunken); }
+.entry-gate.is-exiting { opacity: 0; pointer-events: none; }
+.music { position: relative; display: flex; align-items: center; }
+.music__panel { position: absolute; top: calc(100% + var(--space-2)); right: 0; z-index: var(--z-popover); display: none; width: 230px; gap: var(--space-1); padding: var(--space-3); border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--surface-2); box-shadow: var(--shadow-md); }
+.music.is-open .music__panel { display: grid; }
+.music__panel strong { font-size: var(--text-sm); font-weight: var(--weight-medium); }
+.music__panel small { color: var(--text-3); font-size: var(--text-xs); }
+.music__glyph { display: grid; width: 15px; place-items: center; }
+.music__glyph svg { width: 15px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-width: 1.7; }
+.toast { position: fixed; left: 50%; bottom: var(--space-8); z-index: var(--z-toast); max-width: calc(100vw - var(--space-8)); padding: var(--space-3) var(--space-4); border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--surface-3); box-shadow: var(--shadow-md); color: var(--text); font-size: var(--text-sm); opacity: 0; pointer-events: none; transform: translate(-50%, var(--space-2)); transition: opacity var(--duration-base), transform var(--duration-base); }
+.toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+.profile-card.is-egg { animation: profile-confirm var(--duration-slow) var(--ease-out); }
+@keyframes profile-confirm { 50% { border-color: var(--border-loud); background: var(--surface-2); } }
+.secret-mode::before { position: fixed; inset: 0 0 auto; z-index: var(--z-popover); display: grid; place-items: center; min-height: 40px; border-bottom: 1px solid var(--border-strong); background: var(--surface-2); color: var(--text); content: "ACHIEVEMENT / CURIOUS ENOUGH"; font: 600 var(--text-xs) var(--font-mono); letter-spacing: var(--tracking-wide); animation: achievement 5s var(--ease) both; }
+@keyframes achievement { 0%, 100% { opacity: 0; } 8%, 92% { opacity: 1; } }
+@media (max-width: 780px) { .toast { bottom: calc(58px + var(--space-5) + env(safe-area-inset-bottom, 0px)); } }

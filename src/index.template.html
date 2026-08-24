@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR" style="background:#09090b">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}">
+    <meta name="theme-color" content="#09090b">
+    <meta name="color-scheme" content="dark">
+    <link rel="canonical" href="{{canonical}}">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon/favicon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:image" content="https://tavvkkj.xyz/og/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="{{canonical}}">
+    <meta property="og:site_name" content="{{handle}}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{title}}">
+    <meta name="twitter:description" content="{{description}}">
+    <meta name="twitter:image" content="https://tavvkkj.xyz/og/og-image.png">
+    <script>document.documentElement.classList.add('js');if('scrollRestoration'in history)history.scrollRestoration='manual';scrollTo(0,0)</script>
+    <style>html,body{margin:0;min-height:100%;background:#09090b;color:#ededf0}.js:not(.has-gate) body{visibility:hidden}</style>
+    <link rel="stylesheet" href="/src/styles/index.css">
+    <script type="application/ld+json">{{structuredData}}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content" data-i18n="skip">Pular para os links</a>
+
+    <main class="bio-page" id="content">
+      <div class="bio-topline reveal" data-reveal="topline">
+        <a class="site-signature" href="{{mainUrl}}" rel="noopener" aria-label="Abrir tavvkkj.xyz" data-i18n-aria-label="site.open">
+          <img src="/images/site-icon.png" alt="" width="32" height="32">
+          <span>tavvkkj.xyz</span>
+        </a>
+        <div class="bio-tools">
+          <div class="language-switch" role="group" aria-label="Idioma" data-i18n-aria-label="language.label">
+            <button type="button" data-language="pt-BR" aria-pressed="true">PT</button>
+            <button type="button" data-language="en" aria-pressed="false">EN</button>
+          </div>
+          <div data-js="music-mount"></div>
+        </div>
+      </div>
+
+      <header class="bio-profile reveal" data-reveal="identity">
+        <div class="profile-avatar" data-js="profile-photo">
+          <img src="/images/profile.png" width="128" height="128" fetchpriority="high" alt="Foto do tavv — um gatinho laranja no escuro" data-i18n-alt="profile.photoAlt">
+          <span class="profile-avatar__fallback" aria-hidden="true">T</span>
+          <span class="profile-avatar__status" aria-hidden="true"></span>
+        </div>
+        <span class="badge badge--success"><i></i><span data-i18n="profile.online">ONLINE</span></span>
+        <h1 id="page-title" tabindex="-1" data-motion-words="name">{{handle}}</h1>
+        <p class="bio-profile__quote" data-i18n="profile.quote" data-motion-words="quote">{{bio}}</p>
+        <p class="bio-profile__roles" data-i18n="profile.about" data-motion-words="about">Sites · jogos · desenvolvimento web</p>
+      </header>
+
+      <nav class="bio-links" aria-label="Meus links" data-i18n-aria-label="links.label">
+        <a class="card project-card reveal" href="{{mainUrl}}" rel="noopener" data-js="link-main" data-reveal="main-link">
+          <span class="project-card__content">
+            <span class="badge badge--accent"><i></i><span data-i18n="main.badge">{{mainBadge}}</span></span>
+            <strong class="project-card__title" data-motion-words="project">{{mainLabel}}</strong>
+            <span class="project-card__text" data-i18n="main.description">{{mainDescription}}</span>
+            <span class="link-main__secret" data-js="main-secret" data-i18n="main.secret">build 0x54</span>
+          </span>
+          <span class="project-card__art" aria-hidden="true"><img src="/images/site-icon.png" alt=""></span>
+          <span class="project-card__footer">
+            <span class="project-card__meta"><strong data-i18n="main.status">EM DESENVOLVIMENTO</strong><small data-i18n="main.updated">Projeto independente</small></span>
+            <span class="btn btn--primary"><span data-i18n="main.open">Abrir</span><span class="btn__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+          </span>
+        </a>
+
+        <section class="social-section" aria-labelledby="social-title">
+          <div class="section__head reveal" data-reveal="bio">
+            <div>
+              <h2 id="social-title" data-i18n="social.title" data-motion-words="section">Outros links</h2>
+              <p data-i18n="social.intro">Redes e outros perfis.</p>
+            </div>
+            <span class="u-mono" data-i18n="social.count">04 LINKS</span>
+          </div>
+          <div class="social-grid">{{secondaryLinks}}</div>
+        </section>
+      </nav>
+
+      <footer class="bio-footer reveal" data-reveal="footer">
+        <span>tavv · © 2026</span>
+        <button class="footer-source u-mono" type="button" data-js="background-hidden-node" data-i18n="footer.secret">PROFILE / TAVV</button>
+      </footer>
+    </main>
+
+    <div class="toast" data-js="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/src/scripts/main.js"></script>
+  </body>
+</html>
